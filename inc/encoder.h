@@ -4,7 +4,7 @@
 #include "common.h"
 typedef struct Encoder
 {
-  int16_t position;
+  uint8_t position;
   uint8_t resolution;
 } Encoder_t;
 
