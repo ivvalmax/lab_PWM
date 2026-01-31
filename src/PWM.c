@@ -17,6 +17,8 @@ void PWMChange(Encoder_t* encPtr)
 {
   uint8_t value = encPtr->position;
 
+  OCR3AL = value;
+  OCR3BL = 255-value;
+  OCR3CL = 255-value;
   
-
 }
