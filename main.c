@@ -6,14 +6,19 @@
 
 void allInit(void);
 extern uint8_t* str;
+extern Encoder_t encoder;
 
 int main(void)
 {
   allInit();
-
+  uint8_t r, g, b;
   while(1)
   {
-    lcdWrite(str, );
+    r = 255-encoder.position;
+    g = encoder.position;
+    b = r;
+    lcdWrite(str, r, g, b);
+    _delay_ms(50);
   }
 }
 
