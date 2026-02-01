@@ -41,6 +41,8 @@ void lcdData(uint8_t data)
 
 void lcdWrite(uint8_t* str, uint8_t r, uint8_t g, uint8_t b)
 {
+  lcdCmd(0x01);
+  
   for(uint8_t i = 3; i >= 1; i--)
   {
     *(str+6-i)=digit(r, i);
