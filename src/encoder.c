@@ -35,6 +35,11 @@ ISR (INT1_vect)
     }      
   }
   encoder.position %= 255;
+  
+  OCR3AL = encoder.position;
+  OCR3BL = 255-encoder.position;
+  OCR3CL = 255-encoder.position;
+  
 }
 
 ISR (INT2_vect)
