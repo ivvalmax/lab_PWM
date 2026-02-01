@@ -1,6 +1,6 @@
 #include "../inc/encoder.h"
 
-Encoder_t encoder = {.position = 0, .resolution = 60};
+Encoder_t encoder = {.position = 0, .resolution = 85};
 
 void encoderInit(void)
 {
