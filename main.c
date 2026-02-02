@@ -19,8 +19,6 @@ int main(void)
     b = r;
     
     lcdWrite(r, g, b);
-
-
     _delay_ms(100);
     lcdCmd(0x01);
   }

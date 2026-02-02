@@ -19,19 +19,7 @@ void sevenSegmentWrite(Encoder_t *encPtr)
 {
   int16_t value = encPtr->position;
   uint8_t i = 5;
-  /*uint8_t f = 0;
-  for(i; i <= 5; i++)
-  {
-    uint8_t k = digit(value, 6-i);
-    if(k != 0 && f == 0)
-		  f++;
-		if(f != 0 || i == 5)
-		{
-		  PORTA = (1<<i);
-		  PORTC = segments[k];
-		}
-  }
-  */
+  
   while((digit(value, i) == 0)&&(i > 1))
   {
     PORTC = 0;
