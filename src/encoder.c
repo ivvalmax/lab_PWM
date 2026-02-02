@@ -15,11 +15,11 @@ ISR (INT1_vect)
     EICRA |= (1 << ISC10);
     if((PIND & (1 << 0)) != 0)
     {
-      encoder.position += 255/encoder.resolution;
+      encoder.position -= 255/encoder.resolution;
     }
     else
     {
-      encoder.position -= 255/encoder.resolution;
+      encoder.position += 255/encoder.resolution;
     }
   }
   else
@@ -27,11 +27,11 @@ ISR (INT1_vect)
     EICRA &= ~(1 << ISC10);
     if((PIND & (1 << 0)) != 0)
     {
-      encoder.position -= 255/encoder.resolution;
+      encoder.position += 255/encoder.resolution;
     }
     else
     {
-      encoder.position += 255/encoder.resolution;
+      encoder.position -= 255/encoder.resolution;
     }      
   }
   encoder.position %= 255;
@@ -45,4 +45,7 @@ ISR (INT1_vect)
 ISR (INT2_vect)
 {
   encoder.position = 0;
+  OCR3AL = encoder.position;
+  OCR3BL = 255-encoder.position;
+  OCR3CL = 255-encoder.position;
 }

@@ -17,8 +17,12 @@ int main(void)
     r = 255-encoder.position;
     g = encoder.position;
     b = r;
-    lcdWrite(str, r, g, b);
-    _delay_ms(50);
+    
+    lcdWrite(r, g, b);
+
+
+    _delay_ms(100);
+    lcdCmd(0x01);
   }
 }
 

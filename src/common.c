@@ -2,16 +2,14 @@
 
 uint8_t digit(int16_t d, uint8_t m)
 {
-  uint8_t i = 5, a;
+  uint8_t i = 1, a;
   if(d < 0)
   {
-    d*=-1;
+    d *= -1;
   }
-  while (i)
+  for(i; i <= m; i++)
   {
       a = d%10;
-      if(i-- == m) 
-        break;
       d /= 10;
   }
   return(a);

@@ -1,7 +1,7 @@
 #include "../inc/lcd.h"
 
 
-uint8_t str[]={'R',':', ' ', 48, 48, 48, ' ', 'G', ':', ' ', 48, 48, 48, ' ', 'B', ':', ' ', 48, 48, 48};
+uint8_t str[]={'R',':', ' ',' ', 'G', ':', ' ', ' ', 'B', ':', ' '};
 
 void lcdCmd(uint8_t cmd)
 {
@@ -39,27 +39,40 @@ void lcdData(uint8_t data)
   _delay_ms(4);
 }
 
-void lcdWrite(uint8_t* str, uint8_t r, uint8_t g, uint8_t b)
+void lcdWrite(uint8_t r, uint8_t g, uint8_t b)
 {
-  lcdCmd(0x01);
+  uint8_t i = 0;
   
-  for(uint8_t i = 3; i >= 1; i--)
+  for(i = 0; i < 3; i++)
   {
-    *(str+6-i)=digit(r, i);
+    lcdData(str[i]);
   }
 
-  for(uint8_t i = 3; i >= 1; i--)
+  for(uint8_t j = 3; j > 0; j--)
   {
-    *(str+13-i)=digit(g, i);
+    lcdData(digit(r, j) + '0');
   }
 
-  for(uint8_t i = 3; i >= 1; i--)
+  for(i; i < 7; i++)
   {
-    *(str+20-i) = digit(b, i);
+    lcdData(str[i]);
   }
 
-  for(uint8_t i = 0; i < sizeof(str); i++)
+  for(uint8_t j = 3; j > 0; j--)
   {
-    lcdData(*(str+i));
+    lcdData(digit(g, j)+'0');
   }
+
+  lcdCmd((1 << 7)|(40));
+
+  for(i; i < 11; i++)
+  {
+    lcdData(str[i]);
+  }
+   
+  for(uint8_t j = 3; j > 0; j--)
+  {
+    lcdData(digit(b, j)+'0');
+  }
+
 }
